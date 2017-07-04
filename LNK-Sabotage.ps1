@@ -1,5 +1,5 @@
-#Find Top 10
-$TopFiles = Get-ChildItem -Recurse C:\Users\Craig\Documents\TEST -filter "*.docx" | sort LastWriteTime -Descending | select FullName | select -First 10
+#Find Top 10 *.docx within User's directory (set to "TEST" directory for now)
+$TopFiles = Get-ChildItem -Recurse C:\Users\$env:USERNAME\Documents\TEST -filter "*.docx" | sort LastWriteTime -Descending | select FullName | select -First 10
 
 #Create arrays of existing files and future LNK's
 $Files = $TopFiles.FullName
@@ -16,7 +16,6 @@ foreach ($file in $LNK)
 	}
 	
 #Sharepoint URL - Substitute guestaccess.aspx with download.aspx
-#$ZipPath = Join-Path -Path $env:USERPROFILE -ChildPath "\AppData\Roaming\Microsoft\Word\Startup\Latest-Forms.7z"
 $LocalDir = Convert-Path .
 $Path = $LocalDir + "\Latest-Forms.7z"
 $ExtractPath = Join-Path -Path $env:USERPROFILE -ChildPath "\AppData\Roaming\Microsoft\Word\Startup\"
