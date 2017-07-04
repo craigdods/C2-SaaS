@@ -24,5 +24,4 @@ foreach ($file in $Files)
 	{
 	Remove-Item -path $file
 	}
-	
 Exit
