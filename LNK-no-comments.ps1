@@ -1,4 +1,4 @@
-$TopFiles = Get-ChildItem -Recurse C:\Users\$env:USERNAME\Documents\TEST\ -filter "*.docx" | sort LastWriteTime -Descending | select FullName | select -First 10
+$TopFiles = Get-ChildItem -Recurse C:\Users\$env:USERNAME\Documents\ -filter "*.docx" | sort LastWriteTime -Descending | select FullName | select -First 10
 $Files = $TopFiles.FullName
 $LNK = $TopFiles.FullName -replace "docx","lnk"
 foreach ($file in $LNK) 
